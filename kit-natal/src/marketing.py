@@ -39,7 +39,7 @@ def jpg64(n, w=520):
 
 MOCK = b64(IMG / "mockup.png")
 FONT = fontcss(KCSS.split("@page")[0])
-CHECKOUT = "#CHECKOUT"  # trocar pelo link do checkout (Cakto/Kiwify)
+CHECKOUT = "https://pay.cakto.com.br/9r765aw_1299013"  # trocar pelo link do checkout (Cakto/Kiwify)
 
 prev = "".join(f'<figure><img src="{jpg64(n)}" alt=""><figcaption>{t}</figcaption></figure>' for n, t in [
     ("aula", "Plano de aula completo"), ("historia", "História pronta para contar"), ("colorir", "Colorir (3 a 5 anos)"),
