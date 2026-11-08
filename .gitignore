@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 kit-natal/out/*.pdf
 kit-natal/out/*.html
+kit-natal/out/*.mp4
+kit-natal/out/video/
