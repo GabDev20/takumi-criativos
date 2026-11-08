@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+kit-natal/out/*.pdf
+kit-natal/out/*.html
