@@ -21,7 +21,8 @@ h1{font-size:clamp(28px,6vw,48px)}h2{font-size:clamp(25px,4.5vw,38px);text-align
 .wrap{max-width:1080px;margin:0 auto;padding:0 18px}section{padding:48px 0}
 .hero{background:var(--azul);color:#fff;padding:26px 0 40px;text-align:center}.hero h1{color:#fff;max-width:760px;margin:0 auto 10px}.hero h1 em{color:var(--ouro);font-style:normal}
 .k{color:var(--ouro);font-family:'Baloo 2';font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:14px}
-.vsl{max-width:360px;margin:16px auto 0;border-radius:18px;overflow:hidden;border:4px solid var(--ouro);background:#000;aspect-ratio:9/16}
+.vsl{position:relative;max-width:720px;margin:16px auto 0;border-radius:14px;overflow:hidden;border:4px solid var(--ouro);background:#000;aspect-ratio:16/9}
+.vsl .som{position:absolute;inset:auto 0 12px 0;margin:auto;width:max-content;background:var(--ouro);color:#1F3A5F;font:800 16px 'Baloo 2',sans-serif;border:0;border-radius:30px;padding:8px 18px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}
 .vsl video{width:100%;height:100%;display:block;object-fit:cover}
 .mini{font-size:14px;opacity:.9;margin-top:12px}
 .btn{display:inline-block;background:var(--ouro);color:var(--azul);font-family:'Baloo 2';font-weight:800;font-size:21px;line-height:1.15;padding:16px 28px;border-radius:999px;text-decoration:none;box-shadow:0 6px 0 #b98a2c;margin-top:14px;text-align:center}
@@ -51,7 +52,8 @@ details{max-width:760px;margin:0 auto 10px;border:2px solid #e3e8ee;border-radiu
 <header class="hero"><div class="wrap">
 <div class="k">Para líderes e professores do ministério infantil</div>
 <h1>Seu dezembro no ministério infantil, <em>pronto em um único PDF</em></h1>
-<div class="vsl"><video id="vsl" src="/k6a7d2294/vsl.mp4" poster="/k6a7d2294/vsl-poster.jpg" autoplay muted loop playsinline controls preload="metadata"></video></div>
+<div class="vsl"><video id="vsl" src="/k6a7d2294/vsl-h.mp4" poster="/k6a7d2294/vsl-h-poster.jpg" autoplay muted playsinline controls preload="metadata"></video><button class="som" id="som" type="button">&#128264; Toque para ouvir</button></div>
+<script>(function(){var v=document.getElementById("vsl"),b=document.getElementById("som");function on(){v.muted=false;v.currentTime=0;v.play();b.remove()}b.addEventListener("click",on);v.addEventListener("volumechange",function(){if(!v.muted&&b.parentNode)b.remove()})})();</script>
 <a class="btn" href="#pacotes">Ver os pacotes</a>
 <div class="mini">4 aulas · 16 atividades por idade · teatro · lembrancinhas · a partir de R$ 19,90</div>
 </div></header>
@@ -76,7 +78,7 @@ details{max-width:760px;margin:0 auto 10px;border:2px solid #e3e8ee;border-radiu
 <li>Uso liberado para toda a equipe de professores da sua igreja</li>
 </ul>
 <div class="preco"><s>R$ 44,70 se comprados separados</s><b>R$ 29,90</b><small>pagamento único · 2 meses de aulas prontas</small></div>
-<a class="btn v" data-valor="29.90" href="CHECKOUT_COMPLETO">Quero o Completo</a>
+<a class="btn v" data-valor="29.90" href="https://pay.cakto.com.br/hibomnn">Quero o Completo</a>
 </div>
 </div>
 <p class="ctr mini" style="color:#5b6876">7 dias de garantia nos dois pacotes</p>
