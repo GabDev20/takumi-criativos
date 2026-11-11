@@ -28,8 +28,9 @@ def hook(l1, big=None, sub=None, y0=560, big_size=190):
     """Texto já visível no 1º quadro; o destaque (preço) entra com zoom de 60% a 100%, depois 'respira'."""
     def f(t, s):
         im = V.bg(); d = ImageDraw.Draw(im)
-        V.star(d, W / 2, y0 - 120, 60 + 30 * V.ease(s / .5), V.GOLD)
-        y = V.text_c(d, y0 - int(30 * (1 - V.ease(s / .4))), l1, V.B(92), V.WHITE)
+        import math
+        V.star(d, W / 2, y0 - 120, 60 + 30 * V.ease(s / .5) + 8 * math.sin(s * 5), V.GOLD)  # estrela pulsando o tempo todo
+        y = V.text_c(d, y0 - int(30 * (1 - V.ease(s / .4))) - int(40 * t), l1, V.B(92), V.WHITE)  # texto sobe devagar até o fim da cena
         if big:
             z = .6 + .4 * V.ease(s / .5) + .04 * t  # zoom de entrada + leve crescimento contínuo
             layer = Image.new("RGBA", (W, 400), (0, 0, 0, 0)); ld = ImageDraw.Draw(layer)
