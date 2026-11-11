@@ -2,7 +2,6 @@
 import sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import video as V
-V.render.__globals__["subprocess"]  # crf set via env
 
 from PIL import Image
 IMG = V.OUT / "img"; _c = {}
