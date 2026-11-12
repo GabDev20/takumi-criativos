@@ -51,7 +51,8 @@ def pacotes(titulo):
         V.text_c(d, 300, titulo, V.B(76), WHITE)
         a = V.ease(s / .4); grow = V.ease((s - .5) / .5)
         card(d, 50, 560 + int((1 - a) * 200), 470, 760, "Essencial", ESS, ["Dezembro inteiro", "4 aulas + teatro", "16 atividades", "Lembrancinhas"], False)
-        x2, y2 = 560, 520 - int(20 * grow)
+        import math
+        x2, y2 = 560, 520 - int(20 * grow) + int(10 * math.sin(s * 3))  # Completo 'flutua' o tempo todo
         card(d, x2, y2 + int((1 - a) * 260), 470, 800 + int(40 * grow), "Completo", COMP, ["Tudo do Essencial", "+ Aulas de janeiro", "+ Certificados", "+ Convites de Natal", "Toda a equipe"], True)
         if s > .5:
             fb = V.B(40); tw = d.textlength("Recomendado", font=fb); cx = x2 + 235
@@ -125,7 +126,7 @@ PRECO = [
      [(1.4, S("teatro", None, top="Teatro do culto", f0=(.5, .2), f1=(.5, .4))), (1, S("cartao", None, top="Lembrancinhas")), (1, S("marcadores", None, top="Marcadores"))], True),
     ("Dá menos de cinco reais por domingo. E no pacote Completo ainda vêm as aulas de janeiro e os certificados.", [(5, pacotes("Menos de R$ 5 por domingo"))], False),
     ("Chega no seu e-mail na hora, com sete dias de garantia. Toque em saiba mais e escolha o seu pacote.",
-     [(5, V3.cta("PDF no e-mail na hora · a partir de", "7 dias de garantia", "Toque em Saiba mais"))], False),
+     [(5, V3.cta("Seu dezembro pronto a partir de", "7 dias de garantia", "Toque em Saiba mais"))], False),
 ]
 TEATRO = [
     ("Pediram um teatro de Natal para as crianças, e ninguém sabe por onde começar?",
