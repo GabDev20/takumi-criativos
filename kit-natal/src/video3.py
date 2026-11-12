@@ -34,7 +34,9 @@ def hook(l1, big=None, sub=None, y0=560, big_size=190):
         if big:
             z = .6 + .4 * V.ease(s / .5) + .04 * t  # zoom de entrada + leve crescimento contínuo
             layer = Image.new("RGBA", (W, 400), (0, 0, 0, 0)); ld = ImageDraw.Draw(layer)
-            ld.text((W / 2, 200), big, font=V.B(int(big_size * z)), fill=V.GOLD, anchor="mm")
+            fs = int(big_size * z)
+            while ld.textlength(big, font=V.B(fs)) > 1000: fs -= 4  # nunca passa da largura da tela
+            ld.text((W / 2, 200), big, font=V.B(fs), fill=V.GOLD, anchor="mm")
             im.paste(layer, (0, y - 60), layer); y += 300
         if sub: V.text_c(d, y + 10, sub, V.N(50), V.WHITE)
         return im
