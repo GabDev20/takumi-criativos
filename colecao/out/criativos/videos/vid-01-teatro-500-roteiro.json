@@ -1,0 +1,27 @@
+[
+ {
+  "inicio_s": 0.02,
+  "fim_s": 1.96,
+  "fala": "Seu filho pediu o celular de novo?"
+ },
+ {
+  "inicio_s": 2.28,
+  "fim_s": 7.48,
+  "fala": "Entregue uma destas: caça-palavras, labirinto, pinte por número, código secreto."
+ },
+ {
+  "inicio_s": 7.84,
+  "fim_s": 14.5,
+  "fala": "Quinhentas atividades bíblicas para imprimir. Cinquenta histórias, de Gênesis a Jesus, em dez tipos de atividade."
+ },
+ {
+  "inicio_s": 14.76,
+  "fim_s": 20.94,
+  "fala": "Cinco coleções avulsas saem por noventa e nove e cinquenta. O pacote completo sai por quarenta e sete e noventa."
+ },
+ {
+  "inicio_s": 21.24,
+  "fim_s": 24.5,
+  "fala": "Chega no seu e-mail em minutos. Toque em saiba mais."
+ }
+]
