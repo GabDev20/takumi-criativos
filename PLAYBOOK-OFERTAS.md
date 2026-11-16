@@ -49,3 +49,8 @@ Só entra em produção se passar no 1 e no 3. O 2 define o tamanho da aposta.
 - **Vertical:** subir 20–30% do orçamento a cada 48h enquanto o CPA se mantiver.
 - **Horizontal:** cada ângulo vencedor ganha a própria campanha. Testar 2 ângulos novos por semana até esgotar a lista do filtro 2.
 - **Teto:** quando o CPA sobe 3 dias seguidos após um aumento, voltar ao último orçamento bom e escalar por ângulo novo, não por orçamento.
+
+## Registro de validação (16/11/2026, Biblioteca de Anúncios BR)
+- TDAH/foco: "Escada do Foco – 250 Atividades TDAH" (jornadapratica.com/TDAH, Kiwify, R$ 24,90, página de texto simples). Anúncio ativo desde 12/08/2026 (96 dias). O mesmo operador roda "Kit Autismo Pro 900 Atividades" desde 20/04/2026: modelagem por ângulo autismo → TDAH confirmada. Passa nos filtros 1 e 3.
+- Alfabetização: Prof. Luana Rodrigues (profluanarodrigues.com.br, Hotmart), 46 anúncios ativos, mais antigo de 30/09/2026 (47 dias), 6 kits diferentes. "Kit Destrave a Leitura" R$ 37 (de R$ 89,90), público professora. Também: Clube das Atividades (10.000 atividades R$ 10, desde 13/09), Atividades Cursiva (desde 29/05). Passa nos filtros 1 e 3.
+- Nossa modelagem: mesma oferta (kit de atividades em PDF, ticket baixo), ângulo trocado para os pais, página de texto trocada por quiz.
