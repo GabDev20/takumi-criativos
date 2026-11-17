@@ -64,7 +64,7 @@ function $(s){return document.querySelector(s)}
 function track(n,d){try{fbq('trackCustom',n,d||{})}catch(e){}}
 function show(id){['#ini','#quiz','#load','#res'].forEach(function(s){$(s).classList.add('hide')});$(id).classList.remove('hide');window.scrollTo(0,0)}
 function start(){track('QuizStart',{quiz:C.id});show('#quiz');render()}
-function render(){var q=C.qs[i];$('#prog').style.width=(i/C.qs.length*100)+'%';$('#pnum').textContent='Pergunta '+(i+1)+' de '+C.qs.length;
+function render(){var q=C.qs[i];$('#prog').style.width=((i+1)/(C.qs.length+1)*100)+'%';$('#pnum').textContent='Pergunta '+(i+1)+' de '+C.qs.length;
 var h='<h2>'+q.t+'</h2>'+(q.img?'<img src="'+q.img+'" alt="">':'');
 q.o.forEach(function(o,k){h+='<button class="op" onclick="pick('+k+',this)"><b>'+o[0]+'</b><span>'+o[1]+'</span></button>'});$('#qbox').innerHTML=h}
 function pick(k,el){el.classList.add('sel');var q=C.qs[i];R[q.id]=k;if(q.a){area[q.a]=(area[q.a]||0)+k}
@@ -73,7 +73,7 @@ function carregar(){show('#load');track('QuizComplete',{quiz:C.id});var d=$('#st
 var t=setInterval(function(){if(n<d.length){d[n].classList.add('on');n++}else{clearInterval(t);resultado()}},850)}
 function addq(u){var q=location.search.slice(1);return q?u+(u.indexOf('?')>-1?'&':'?')+q:u}
 function resultado(){var r=window.RESULT(R,area);$('#rtit').innerHTML=r.tit;$('#rsub').innerHTML=r.sub;$('#rbars').innerHTML=r.bars||'';
-$('#rlivre').innerHTML=r.livre;var m=r.lock.match(/^(<h3>[\s\S]*?<\/h3>\s*<p>[\s\S]*?<\/p>)([\s\S]*)$/);if(m){$('#rlivre').innerHTML+='<div style="background:#f3fbf6;border-radius:12px;padding:12px 14px;margin-top:10px">'+m[1]+'</div>';$('#rlock').innerHTML=m[2];}else{$('#rlock').innerHTML=r.lock;}show('#res');
+$('#rlivre').innerHTML=r.livre;var m=r.lock.match(/^(<h3>[\s\S]*?<\/h3>\s*<p>[\s\S]*?<\/p>)([\s\S]*)$/);if(m){$('#rlivre').innerHTML+='<div style="background:#f3fbf6;border-radius:12px;padding:12px 14px;margin-top:10px">'+m[1]+'</div>';$('#rlock').innerHTML=m[2];}else{$('#rlock').innerHTML=r.lock;}show('#res');$('#stk').classList.remove('hide');
 try{fbq('track','ViewContent',{content_name:C.produto,value:C.valor,currency:'BRL'})}catch(e){}}
 document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('a.ck').forEach(function(a){a.href=addq(a.getAttribute('data-u'))})});
 function bar(nome,v,max,cor){var p=Math.max(8,Math.round(v/max*100));return '<div class="bar"><span>'+nome+'<small>'+p+'%</small></span><em><i style="width:'+p+'%;background:'+cor+'"></i></em></div>'}
@@ -93,8 +93,6 @@ fbq('init','%(pixel)s');fbq('track','PageView');</script>
 <img src="%(heroimg)s" alt="" style="border-radius:16px;margin:0 auto 16px;max-height:300px;box-shadow:0 6px 22px rgba(0,0,0,.12)">
 <button class="btn" onclick="start()">%(cta)s</button>
 <div class="mini">%(mini)s</div>
-<a class="btn alt ck" style="margin-top:12px" data-u="%(ck)s" href="%(ck)s">Já quero o kit: %(preco)s</a>
-<div class="mini">Pix ou cartão · chega no e-mail em 2 minutos · garantia de 7 dias</div>
 </section>
 <section id="quiz" class="hide"><div class="prog"><i id="prog"></i></div><div class="pnum" id="pnum"></div><div class="card q" id="qbox"></div></section>
 <section id="load" class="hide load"><div class="spin"></div><h2>%(loadtit)s</h2><div class="steps" id="steps">%(steps)s</div></section>
@@ -114,7 +112,7 @@ fbq('init','%(pixel)s');fbq('track','PageView');</script>
 <p class="aviso">%(aviso)s</p>
 <div class="quiz-pad"></div></section>
 </div>
-<div class="sticky"><div class="w"><div>%(stxt)s<b>%(preco)s</b></div><a class="ck" data-u="%(ck)s" href="%(ck)s">%(sbtn)s</a></div></div>
+<div class="sticky hide" id="stk"><div class="w"><div>%(stxt)s<b>%(preco)s</b></div><a class="ck" data-u="%(ck)s" href="%(ck)s">%(sbtn)s</a></div></div>
 <script>%(js)s</script>
 <script>window.RESULT=%(result)s;</script>
 <script src="https://api.cakto.com.br/api/product/checkout/tracker.js" async></script>
@@ -153,7 +151,7 @@ FAQ_COMUM = [("Como recebo?", "Logo após o pagamento, o link de acesso chega no
              ("É assinatura?", "Não. Pagamento único, acesso para sempre.")]
 
 # ------------------------------------------------------------------ FOCO
-foco_cfg = {"id": "foco", "produto": "Trilha do Foco 250", "valor": 19.90, "qs": [
+foco_cfg = {"id": "foco", "produto": "Trilha do Foco 250", "valor": 12.90, "qs": [
     {"id": "licao", "a": "sus", "t": "Na hora da lição de casa, ele(a)...", "img": "/foco/foco-p5.jpg", "o": [["😊", "Faz sozinho até o fim"], ["🙂", "Precisa ser lembrado algumas vezes"], ["😕", "Levanta toda hora e não termina"], ["😩", "Só faz com você sentado do lado"]]},
     {"id": "tres", "a": "mem", "t": "Quando você pede 3 coisas seguidas (\"guarda o tênis, lava a mão e vem jantar\")...", "o": [["✅", "Faz as três"], ["🤏", "Esquece uma"], ["1️⃣", "Faz só a primeira"], ["🌀", "Nem começa, se distrai no caminho"]]},
     {"id": "ruido", "a": "sel", "t": "Com TV ligada ou barulho por perto, ele(a) consegue se concentrar?", "o": [["🎯", "Consegue sim"], ["🙂", "Às vezes se distrai"], ["😕", "Perde o foco fácil"], ["😩", "É impossível"]]},
@@ -195,7 +193,7 @@ pagina("trilha-do-foco.html", {"p": "#123B7A", "p2": "#16A34A", "ac": "#F2B705",
 })
 
 # ------------------------------------------------------------------ LEITURA
-leit_cfg = {"id": "leitura", "produto": "Le Comigo", "valor": 19.90, "qs": [
+leit_cfg = {"id": "leitura", "produto": "Le Comigo", "valor": 12.90, "qs": [
     {"id": "letras", "a": "f", "t": "Ela reconhece as letras do alfabeto?", "o": [["🔤", "Todas"], ["🙂", "A maioria"], ["🤏", "Algumas"], ["❓", "Poucas ou nenhuma"]]},
     {"id": "bola", "a": "f", "t": "Mostrando a palavra BOLA, ela...", "img": "/leitura/leitura-p3.jpg", "o": [["📖", "Lê sozinha: \"bola\""], ["🐢", "Lê devagar, sílaba por sílaba"], ["🔡", "Fala as letras, mas não junta"], ["🙈", "Não tenta ler"]]},
     {"id": "escrita", "a": "f", "t": "Pedindo para escrever GATO, ela escreve...", "o": [["✍️", "GATO"], ["✏️", "GTO ou GAO (falta letra)"], ["🔠", "Letras soltas, sem relação com o som"], ["🖍️", "Desenha ou rabisca"]]},
@@ -236,7 +234,7 @@ pagina("le-comigo.html", {"p": "#7B2CBF", "p2": "#16A34A", "ac": "#FFD23F", "bg"
 })
 
 # ------------------------------------------------------------------ BÍBLICO (oferta atual remodelada)
-bib_cfg = {"id": "biblico", "produto": "Colecao Atividades Biblicas 500", "valor": 27.90, "qs": [
+bib_cfg = {"id": "biblico", "produto": "Colecao Atividades Biblicas 500", "valor": 17.90, "qs": [
     {"id": "gosta", "t": "O que ela mais gosta de fazer?", "img": "/colecao/t-caca.jpg", "o": [["🎨", "Pintar e desenhar"], ["🧩", "Desafios: labirinto, caça-palavras"], ["✍️", "Escrever e criar"], ["👂", "Ouvir histórias"]]},
     {"id": "conhece", "t": "Ela conhece as histórias da Bíblia?", "o": [["📖", "Conhece muitas"], ["🙂", "Conhece as principais"], ["🤏", "Conhece poucas"], ["🌱", "Está começando agora"]]},
     {"id": "tela", "t": "Quanto tempo de tela por dia?", "o": [["📵", "Menos de 1 hora"], ["📱", "1 a 2 horas"], ["📱📱", "2 a 4 horas"], ["🔋", "Mais de 4 horas"]]},
