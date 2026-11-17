@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Gera as 3 páginas de quiz gamificado (Lovable public/). Uso: python3 src/gerar_quiz.py
 Checkout: preencha CHECKOUT abaixo quando os produtos existirem na Cakto."""
-import os, json
+import os, json, re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(RAIZ, "out", "lovable")
@@ -121,6 +121,12 @@ fbq('init','%(pixel)s');fbq('track','PageView');</script>
 </body></html>"""
 
 
+LP = {
+    "trilha-do-foco.html": {"topo": "Pagamento único · chega no e-mail em 2 minutos", "sub": "250 atividades de atenção e calma para imprimir, em 5 etapas e 3 níveis, de 5 a 12 anos. 15 minutos por dia, longe da tela."},
+    "plano-biblico.html": {"topo": "Pagamento único · chega no e-mail em 2 minutos", "sub": "500 atividades bíblicas para imprimir + 5 músicas, de 5 a 11 anos. Uma atividade por dia troca a tela pelas histórias da Bíblia."},
+}
+
+
 def pagina(nome, cores, cfg, d):
     d = dict(d)
     d["css"] = CSS % cores
@@ -130,7 +136,16 @@ def pagina(nome, cores, cfg, d):
     d["itens"] = "".join("<li>%s</li>" % s for s in d.pop("itens_l"))
     d["grid"] = "".join('<img src="%s" alt="">' % s for s in d.pop("grid_l"))
     d["faq"] = "".join("<details><summary>%s</summary><p>%s</p></details>" % qa for qa in d.pop("faq_l"))
+    d.setdefault("extra", "")
     with open(os.path.join(OUT, nome), "w") as f: f.write(PAGE % d)
+    lp = LP.get(nome)
+    if lp:
+        h = PAGE % dict(d, topo=lp["topo"], sub=lp["sub"], mini="Pix ou cartão · chega no e-mail em 2 minutos · garantia de 7 dias")
+        h = h.replace('<button class="btn" onclick="start()">%s</button>' % d["cta"], '<a class="btn ck" data-u="%s" href="%s">Quero o kit por %s</a>' % (d["ck"], d["ck"], d["preco"]), 1)
+        h = re.sub(r'<a class="btn alt ck" style="margin-top:12px".*?</a>\s*<div class="mini">.*?</div>', '<a class="btn alt" style="margin-top:12px" href="#oferta">Ver o que vem no kit ↓</a>', h, count=1, flags=re.S)
+        h = h.replace('<section id="res" class="hide">\n<div class="card">', '<section id="res">\n<div class="card" style="display:none">', 1)
+        h = h.replace('</body>', "<script>try{fbq('track','ViewContent',{content_name:%s,currency:'BRL'})}catch(e){}</script></body>" % json.dumps(d["title"], ensure_ascii=False), 1)
+        with open(os.path.join(OUT, nome.replace(".html", "-lp.html")), "w") as f: f.write(h)
 
 
 FAQ_COMUM = [("Como recebo?", "Logo após o pagamento, o link de acesso chega no seu e-mail. É só baixar o PDF e imprimir em papel A4 comum."),
@@ -171,7 +186,7 @@ pagina("trilha-do-foco.html", {"p": "#123B7A", "p2": "#16A34A", "ac": "#F2B705",
     "ofimg": "/foco/foco-p4.jpg",
     "itens_l": ["250 atividades para imprimir, de 5 a 12 anos", "5 etapas: sustentar, selecionar, guardar, planejar e controlar", "3 níveis em cada etapa: começa fácil e vai subindo", "Labirintos, caça ao símbolo, sudoku de formas, setas trocadas, sinal verde/vermelho, pare-pense-faça e mais", "Mapa da trilha para pintar o progresso + certificado", "Gabarito e guia de 1 página para os pais"],
     "grid_l": ["/foco/foco-p5.jpg", "/foco/foco-p55.jpg", "/foco/foco-p104.jpg", "/foco/foco-p154.jpg", "/foco/foco-p156.jpg", "/foco/foco-p205.jpg"],
-    "precoantes": "250 atividades por", "preco": "R$ 19,90", "precodepois": "menos de R$ 0,08 por atividade · pagamento único",
+    "precoantes": "250 atividades por", "preco": "R$ 12,90", "precodepois": "cerca de R$ 0,05 por atividade · pagamento único",
     "btn": "Quero a Trilha do Foco",
     "extra": '<p class="mini" style="margin-top:12px">No checkout você pode incluir a <b>Rotina Visual e Quadro de Combinados</b> (cartões de rotina, quadro de estrelas e termômetro da calma).</p>',
     "faq_l": FAQ_COMUM + [("Serve para criança com TDAH?", "Serve para qualquer criança que precisa treinar foco, com ou sem diagnóstico. É material educativo de apoio: não é tratamento e não substitui o acompanhamento profissional."), ("Quanto tempo por dia?", "10 a 15 minutos, 1 ou 2 atividades. Pouco e todo dia funciona melhor.")],
@@ -212,7 +227,7 @@ pagina("le-comigo.html", {"p": "#7B2CBF", "p2": "#16A34A", "ac": "#FFD23F", "bg"
     "ofimg": "/leitura/leitura-p1.jpg",
     "itens_l": ["3 apostilas para imprimir, com 198 fichas progressivas", "Apostila 1: 16 famílias silábicas, do B ao Z", "Apostila 2: NH, LH, CH, QU, GU, RR, SS, Ç, BR, PL, sílabas com R, S, M e N no fim e ÃO", "Apostila 3: frases em 6 níveis, frases embaralhadas e textos curtos com perguntas", "Cada família tem: leitura, complete, ligue, caça-palavras, separar sílabas e ditado", "Feito para os pais aplicarem em 10 a 15 minutos por dia"],
     "grid_l": ["/leitura/leitura-p3.jpg", "/leitura/leitura-p4.jpg", "/leitura/leitura-p6.jpg", "/leitura/leitura2-p3.jpg", "/leitura/leitura3-p3.jpg", "/leitura/leitura3-p15.jpg"],
-    "precoantes": "198 fichas por", "preco": "R$ 19,90", "precodepois": "cerca de R$ 0,10 por ficha · pagamento único",
+    "precoantes": "198 fichas por", "preco": "R$ 12,90", "precodepois": "cerca de R$ 0,07 por ficha · pagamento único",
     "btn": "Quero o kit Lê Comigo",
     "extra": '<p class="mini" style="margin-top:12px">No checkout você pode incluir as <b>Fichas Relâmpago</b>: 240 palavras para recortar e jogar o desafio de leitura de 1 minuto.</p>',
     "faq_l": FAQ_COMUM + [("Serve para professora?", "Serve. As fichas podem ser usadas em sala de aula e no reforço. Só não podem ser revendidas."), ("E se meu filho já lê um pouco?", "O teste mostra a fase dele. Você começa direto na apostila certa e pula o que ele já sabe.")],
@@ -253,9 +268,9 @@ pagina("plano-biblico.html", {"p": "#1F3A5F", "p2": "#16A34A", "ac": "#E9B44C", 
     "ofimg": "/colecao/pacote-500.jpg",
     "itens_l": ["5 coleções com 100 atividades cada, de 5 a 11 anos", "50 histórias da Bíblia, do Antigo Testamento a Jesus", "10 tipos de atividade: caça-palavras, labirinto, código secreto, pinte por número e mais", "Gabarito em todas as coleções", "Bônus: 5 músicas para cantar com as crianças"],
     "grid_l": ["/colecao/t-caca.jpg", "/colecao/t-codigo.jpg", "/colecao/t-complete.jpg", "/colecao/t-acrostico.jpg", "/colecao/capa-1.jpg", "/colecao/capa-2.jpg"],
-    "precoantes": "500 atividades + 5 músicas por", "preco": "R$ 27,90", "precodepois": "5 coleções avulsas custariam R$ 99,50 · você economiza R$ 71,60",
+    "precoantes": "500 atividades + 5 músicas por", "preco": "R$ 17,90", "precodepois": "pagamento único · menos de R$ 0,04 por atividade",
     "btn": "Quero o Pacote Completo",
-    "extra": '<a class="btn alt ck" style="margin-top:10px" data-u="%s" href="%s">Quero só 1 coleção (100 atividades) por R$ 19,90</a>' % (CHECKOUT["biblico_1"], CHECKOUT["biblico_1"]),
+    "extra": "",
     "faq_l": FAQ_COMUM + [("Posso usar na igreja?", "Pode. Uso pessoal, familiar, no ministério infantil e em sala de aula. Só não pode revender.")],
     "aviso": "Estrela Guia Kids · material para imprimir · uso pessoal e em sala de aula.",
     "stxt": "500 atividades + 5 músicas", "sbtn": "Quero", "result": bib_result,

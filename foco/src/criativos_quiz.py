@@ -13,19 +13,19 @@ WIN = pathlib.Path("C:/Windows/Fonts")
 # produto -> ângulo -> (balão, faixa verde, faixa vermelha, rodapé, mockup?)
 ANG = {
     "foco": {
-        "licao": ("Não consigo terminar!", "Mãe? A lição nunca termina?", "250 atividades de foco para imprimir · R$ 19,90", "Clique em saiba mais", True),
-        "tela": ("Só mais 5 minutinhos!", "Troque 15 minutos de tela por 1 atividade", "250 atividades de atenção e calma · R$ 19,90", "Clique em saiba mais", True),
+        "licao": ("Não consigo terminar!", "Mãe? A lição nunca termina?", "250 atividades de foco para imprimir · R$ 12,90", "Clique em saiba mais", True),
+        "tela": ("Só mais 5 minutinhos!", "Troque 15 minutos de tela por 1 atividade", "250 atividades de atenção e calma · R$ 12,90", "Clique em saiba mais", True),
         "teste": ("Ué, o que era pra fazer?", "Qual habilidade de foco ele mais precisa treinar?", "Faça o teste de 1 minuto", "Faça o teste: toque em saiba mais", False),
     },
     "leitura": {
-        "trava": ("Não sei ler isso!", "Mãe? Ele ainda trava na leitura?", "198 fichas da sílaba à frase · R$ 19,90", "Clique em saiba mais", True),
-        "ferias": ("Já esqueci as letras...", "Férias chegando: ele vai esquecer o que aprendeu?", "15 minutos por dia de leitura em casa · R$ 19,90", "Clique em saiba mais", True),
+        "trava": ("Não sei ler isso!", "Mãe? Ele ainda trava na leitura?", "198 fichas da sílaba à frase · R$ 12,90", "Clique em saiba mais", True),
+        "ferias": ("Já esqueci as letras...", "Férias chegando: ele vai esquecer o que aprendeu?", "15 minutos por dia de leitura em casa · R$ 12,90", "Clique em saiba mais", True),
         "fase": ("BA... BE... BI...", "Em que fase da leitura seu filho está?", "Descubra em 1 minuto: teste grátis", "Faça o teste: toque em saiba mais", False),
     },
     "biblico": {
-        "celular": ("Só mais um vídeo!", "Mãe? Férias e ele só quer o celular?", "500 atividades bíblicas + 5 músicas · R$ 27,90", "Clique em saiba mais", True),
-        "salinha": ("Que aula chataaa", "Tia? Já não sabe o que passar na salinha?", "500 atividades bíblicas para imprimir · R$ 27,90", "Clique em saiba mais", True),
-        "plano": ("Agora é a minha vez!", "Monte o plano de férias sem tela em 1 minuto", "Responda 6 perguntas: é grátis", "Faça o teste: toque em saiba mais", False),
+        "celular": ("Só mais um vídeo!", "Mãe? Férias e ele só quer o celular?", "500 atividades bíblicas + 5 músicas · R$ 17,90", "Clique em saiba mais", True),
+        "salinha": ("Que aula chataaa", "Tia? Já não sabe o que passar na salinha?", "500 atividades bíblicas para imprimir · R$ 17,90", "Clique em saiba mais", True),
+        "plano": ("Agora é a minha vez!", "Monte o plano de férias sem tela em 1 minuto", "Responda 4 perguntas: é grátis", "Faça o teste: toque em saiba mais", False),
     },
 }
 MOCK = {"foco": SRC / "foco-p8.png", "leitura": SRC / "leitura-p4.png", "biblico": ROOT / "out" / "lovable" / "colecao" / "t-caca.jpg"}
@@ -65,7 +65,7 @@ def fundo(nome, W, H, top):
 
 f64 = lambda p, m: f"data:{m};base64," + base64.b64encode(pathlib.Path(p).read_bytes()).decode()
 CSS = f"""@font-face{{font-family:Baloo;font-weight:800;src:url({f64(FONTS / 'baloo-2-latin-800-normal.woff2', 'font/woff2')})}}
-@font-face{{font-family:Mao;src:url({f64(WIN / 'segoeprb.ttf', 'font/ttf')})}}
+@font-face{{font-family:Mao;src:url({f64((WIN / 'segoeprb.ttf') if (WIN / 'segoeprb.ttf').exists() else pathlib.Path('/root/.fonts/PatrickHand-Regular.ttf'), 'font/ttf')})}}
 *{{box-sizing:border-box}}body{{margin:0;overflow:hidden;position:relative;font-family:Baloo}}
 .bg{{position:absolute;inset:0;width:100%;height:100%}}
 .fx{{position:absolute;left:50%;color:#fff;font-weight:800;text-align:center;line-height:1.08;padding:14px 30px 8px;border-radius:14px;box-shadow:0 8px 22px rgba(0,0,0,.35)}}
