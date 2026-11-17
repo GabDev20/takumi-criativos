@@ -125,6 +125,28 @@ LP = {
 }
 
 
+# Oferta em 2 planos (modelada da estrutura Básico x Completo que escala no nicho). Links "PREENCHER_*": criar a oferta na Cakto e colar aqui.
+PLANOS = {
+    "trilha-do-foco.html": {"b": ("Básico", "Etapa 1: 50 atividades de atenção", ["50 atividades para imprimir", "1 nível de dificuldade"], "R$ 9,90", "PREENCHER_FOCO_BASICO"),
+                            "c": ("Completo", "Trilha do Foco: 250 atividades", ["250 atividades em 5 etapas e 3 níveis", "De 5 a 12 anos, com gabarito", "Bônus: Rotina Visual e Quadro de Combinados"], "R$ 14,90", "PREENCHER_FOCO_COMPLETO")},
+    "le-comigo.html": {"b": ("Básico", "Apostila 1: sílabas simples", ["16 famílias silábicas, do B ao Z", "Para começar do zero"], "R$ 9,90", "PREENCHER_LEITURA_BASICO"),
+                       "c": ("Completo", "Lê Comigo: 3 apostilas, 198 fichas", ["Da sílaba simples à frase e ao texto", "De 4 a 8 anos", "Bônus: Fichas Relâmpago (240 palavras)"], "R$ 14,90", "PREENCHER_LEITURA_COMPLETO")},
+    "plano-biblico.html": {"b": ("Básico", "1 coleção: 100 atividades bíblicas", ["10 histórias, 10 tipos de atividade", "Com gabarito"], "R$ 9,90", "https://pay.cakto.com.br/v6xmhrk_1326452"),
+                           "c": ("Completo", "500 atividades bíblicas + 5 músicas", ["5 coleções, 50 histórias da Bíblia", "De 5 a 11 anos, com gabarito", "Bônus: 5 músicas para cantar juntos"], "R$ 17,90", "https://pay.cakto.com.br/nwy8sx8_1326449")},
+}
+PLANCSS = ".planos{display:grid;gap:18px;margin-top:22px}.plano{border:2px solid #e3e3e3;border-radius:16px;padding:14px;background:#fff;position:relative}.plano.dest{border-color:var(--p2);box-shadow:0 6px 20px rgba(22,163,74,.18)}.plano .selo{position:absolute;top:-12px;right:12px;background:var(--p2);color:#fff;font-weight:800;font-size:12px;padding:4px 10px;border-radius:20px}.plano h3{margin:0 0 4px}.plano ul{margin:6px 0 10px;padding-left:18px}.plano .v{font-family:'Baloo 2';font-size:30px;color:var(--p2);font-weight:800}"
+
+
+def bloco_planos(pl):
+    def card(k, top):
+        nome, tit, itens, preco, ck = pl[k]
+        return ('<div class="plano%s">%s<small>%s</small><h3>%s</h3><ul>%s</ul><div class="v">%s</div><small>pagamento único</small>'
+                '<a class="btn %sck" style="margin-top:8px" data-u="%s" href="%s">Quero o %s</a></div>') % (
+            " dest" if top else "", '<span class="selo">Mais escolhido</span>' if top else "", nome, tit,
+            "".join("<li>%s</li>" % i for i in itens), preco, "" if top else "alt ", ck, ck, nome)
+    return '<div class="planos">%s%s</div>' % (card("c", True), card("b", False))
+
+
 def pagina(nome, cores, cfg, d):
     d = dict(d)
     d["css"] = CSS % cores
@@ -136,6 +158,13 @@ def pagina(nome, cores, cfg, d):
     d["faq"] = "".join("<details><summary>%s</summary><p>%s</p></details>" % qa for qa in d.pop("faq_l"))
     d.setdefault("extra", "")
     with open(os.path.join(OUT, nome), "w") as f: f.write(PAGE % d)
+    pl = PLANOS.get(nome)
+    if pl:
+        h = PAGE % dict(d, preco=pl["c"][3], ck=pl["c"][4])
+        h = re.sub(r'<div class="preco">.*?(?=<div class="mini">Pagamento único)', lambda m: bloco_planos(pl), h, count=1, flags=re.S)
+        h = h.replace("</style>", PLANCSS + "</style>", 1)
+        os.makedirs(os.path.join(OUT, "planos"), exist_ok=True)
+        with open(os.path.join(OUT, "planos", nome), "w") as f: f.write(h)
     lp = LP.get(nome)
     if lp:
         h = PAGE % dict(d, topo=lp["topo"], sub=lp["sub"], mini="Pix ou cartão · chega no e-mail em 2 minutos · garantia de 7 dias")
