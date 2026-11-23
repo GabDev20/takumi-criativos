@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Desafio Contagem Regressiva - Teste gratuito</title>
+<meta name="description" content="Responda em 40 segundos e receba seu plano de treinos de 15 minutos até a sua data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+<!-- Pixel da Meta: cole aqui o SEU pixel (nenhum pixel de terceiros nesta página). -->
+<style>
+:root{--cream:#FFF4E8;--ink:#17181C;--coral:#FF5A36;--coral-l:#FFF0EB;--gold:#F2B33D;--line:#EADFD2;--mute:#6B6660;--ok:#1F9D6B}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#fff;color:var(--ink);font:16px/1.45 Inter,system-ui,sans-serif}
+.wrap{max-width:28rem;margin:0 auto;padding:18px 16px 40px;min-height:100vh}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.back{width:32px;height:32px;border:0;background:none;font-size:22px;color:var(--mute);cursor:pointer;visibility:hidden}
+.prog{flex:1;height:8px;background:#F4ECE3;border-radius:9px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:var(--coral);transition:width .4s}
+h1,h2{font-family:Montserrat,sans-serif;font-weight:900;letter-spacing:-.01em}
+h2{font-size:24px;line-height:1.2;text-align:center;margin:6px 0 20px}
+.kick{display:inline-block;background:var(--ink);color:#fff;font-weight:700;font-size:13px;padding:3px 8px;border-radius:4px}
+.center{text-align:center}
+.hero{width:180px;height:180px;margin:0 auto 18px;border-radius:24px;background:linear-gradient(150deg,#1d2440,#3b2a4a 60%,#ff7a4d);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.hero b{font:900 64px/1 Montserrat}.hero span{text-align:center;font:800 13px Inter;letter-spacing:.14em;margin-top:6px}.hero small{font:700 11px Inter;opacity:.8;margin-top:10px;letter-spacing:.08em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{width:100%;border:2px solid var(--line);background:#fff;border-radius:16px;min-height:56px;padding:14px 16px;font:600 15px Inter;color:var(--ink);text-align:left;cursor:pointer;display:flex;align-items:center;gap:12px;transition:.15s}
+.opt:hover{border-color:var(--coral)}.opt.on{border-color:var(--coral);background:var(--coral-l)}
+.opt .l{flex:none;width:26px;height:26px;border:1.5px solid currentColor;border-radius:6px;font:700 12px Inter;display:flex;align-items:center;justify-content:center}
+.opt.big{flex-direction:column;justify-content:center;text-align:center;padding:16px 10px;gap:8px;min-height:130px}
+.opt.big svg{width:46px;height:46px}
+.opt.dark{background:var(--coral);color:#fff;border-color:var(--coral);justify-content:center}
+.list{display:flex;flex-direction:column;gap:10px}
+.cta{display:block;width:100%;border:0;background:var(--coral);color:#fff;font:800 16px Montserrat;padding:18px;border-radius:16px;cursor:pointer;text-align:center;text-decoration:none;margin-top:16px;box-shadow:0 8px 22px rgba(255,90,54,.3)}
+.cta.pulse{animation:p 1.6s infinite}@keyframes p{50%{transform:scale(1.03)}}
+.note{font-size:13px;color:var(--mute);text-align:center;margin-top:14px}
+.pill{display:inline-flex;gap:6px;align-items:center;font:700 12px Inter;color:var(--mute);margin-top:18px}
+.card{background:var(--cream);border-radius:20px;padding:20px;margin:14px 0}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0}
+.cal div{aspect-ratio:1;border-radius:10px;background:#fff;border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font:800 14px Montserrat}
+.cal .d{background:var(--ink);color:#fff;border-color:var(--ink)}.cal .t{background:var(--coral);color:#fff;border-color:var(--coral)}.cal .f{background:var(--gold);border-color:var(--gold)}
+.load{padding-top:120px;text-align:center}.load b{display:block;font:900 54px Montserrat;color:var(--coral);margin:12px 0}
+.load .bar{height:10px;background:#F4ECE3;border-radius:9px;overflow:hidden;margin:0 30px}.load .bar i{display:block;height:100%;width:0;background:var(--coral)}
+.warn{background:#17181C;color:#fff;border-radius:20px;padding:22px;text-align:center}
+.warn h2{color:#fff;margin:6px 0 4px;font-size:22px}.warn .y{color:var(--gold);font:800 13px Inter;letter-spacing:.1em}
+.chk{list-style:none;display:flex;flex-direction:column;gap:10px;margin:16px 0}.chk li{display:flex;gap:10px;align-items:flex-start;font-weight:500}
+.chk li:before{content:"";flex:none;width:20px;height:20px;border-radius:6px;background:var(--ok) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10l3 3 7-7' stroke='white' stroke-width='2.5' fill='none'/%3E%3C/svg%3E") center/16px no-repeat;margin-top:2px}
+.chk.x li:before{background:var(--coral) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 6l8 8M14 6l-8 8' stroke='white' stroke-width='2.5'/%3E%3C/svg%3E") center/14px no-repeat}
+.hl{background:var(--coral);color:#fff;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.price{border:2px dashed var(--coral);border-radius:20px;padding:20px;text-align:center;margin:18px 0}
+.price .tag{display:inline-block;background:var(--ink);color:#fff;font:800 12px Inter;letter-spacing:.08em;padding:6px 10px;border-radius:999px}
+.price s{color:var(--mute);display:block;margin-top:12px}.price b{display:block;font:900 46px Montserrat;color:var(--ink)}.price small{color:var(--mute)}
+.sec{font:900 20px Montserrat;margin:28px 0 8px;text-align:center}
+.step{display:flex;gap:14px;align-items:flex-start;margin:12px 0}.step>b{flex:none;width:36px;height:36px;border-radius:12px;background:var(--coral);color:#fff;display:flex;align-items:center;justify-content:center;font:900 15px Montserrat}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}.faq summary{font-weight:700;cursor:pointer}.faq p{margin-top:8px;color:#3a3632}
+.foot{font-size:12px;color:var(--mute);text-align:center;margin-top:30px}
+.scr{display:none;animation:in .35s}.scr.on{display:block}@keyframes in{from{opacity:0;transform:translateY(8px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top" id="top"><button class="back" id="back" aria-label="Voltar">&#8249;</button><div class="prog"><i id="bar"></i></div></div>
+  <div id="app"></div>
+</div>
+
+<script>
+// Link do checkout da Cakto (trocar após cadastrar o produto)
+const CHECKOUT = "https://pay.cakto.com.br/6tnmar6_1362307";
+
+const I = { // ícones próprios
+  taca:'<svg viewBox="0 0 48 48" fill="none" stroke="#FF5A36" stroke-width="3" stroke-linecap="round"><path d="M14 6h20l-2 14a8 8 0 0 1-16 0zM24 28v12M16 42h16"/><path d="M38 8l4-4M40 14h5M6 14h4" stroke="#F2B33D"/></svg>',
+  aviao:'<svg viewBox="0 0 48 48" fill="none" stroke="#FF5A36" stroke-width="3" stroke-linejoin="round"><path d="M4 26l40-14-10 30-8-12-12 6 4-10z"/></svg>',
+  alianca:'<svg viewBox="0 0 48 48" fill="none" stroke="#FF5A36" stroke-width="3"><circle cx="18" cy="28" r="11"/><circle cx="30" cy="28" r="11"/><path d="M24 6l3 5h-6z" stroke="#F2B33D"/></svg>',
+  capelo:'<svg viewBox="0 0 48 48" fill="none" stroke="#FF5A36" stroke-width="3" stroke-linejoin="round"><path d="M2 18l22-10 22 10-22 10z"/><path d="M12 23v10c6 5 18 5 24 0V23M42 20v12"/></svg>',
+  rel:(n)=>`<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21" fill="#FFF0EB" stroke="#FF5A36" stroke-width="3"/><text x="24" y="30" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="${n.length>2?13:17}" fill="#17181C">${n}</text></svg>`
+};
+
+const S = {}; // respostas
+const NOMES = {reveillon:"o Réveillon",viagem:"a sua viagem",festa:"o casamento/festa",formatura:"a formatura",outra:"a sua data"};
+
+const telas = [
+ {id:"data", tipo:"big", topo:true, kick:"Para começarmos, me conte:", q:"Qual é a data que você quer chegar preparada?",
+  ops:[["reveillon","Réveillon",I.taca],["viagem","Viagem",I.aviao],["festa","Casamento ou festa",I.alianca],["formatura","Formatura / outra",I.capelo]],
+  rod:"Faça este teste para receber um plano de treinos montado até a sua data. No final você vê o seu plano grátis."},
+ {id:"dias", tipo:"big", q:"Quantos dias faltam para a sua data?",
+  ops:[["10","Menos de 15",I.rel("-15")],["30","15 a 40",I.rel("40")],["50","40 a 60",I.rel("60")],["70","Mais de 60",I.rel("60+")]]},
+ {id:"rotina", tipo:"letra", q:"Olhando para a sua rotina hoje, como você classifica o seu ritmo de treino?",
+  ops:[["parada","PARADA (faz meses que não treino)"],["as-vezes","DE VEZ EM QUANDO (treino quando sobra tempo)"],["inconstante","COMEÇO E PARO (já tentei várias vezes)"]]},
+ {id:"objetivo", tipo:"big", q:"Com qual das duas você mais se identifica?",
+  ops:[["habito","Quero só criar o hábito e chegar na data me sentindo bem",I.rel("15")],["puxado","Quero um desafio mais puxado, com treino todo dia",I.rel("21")]]},
+ {id:"tempo", tipo:"letra", q:"Quanto tempo você consegue separar por dia, de verdade?",
+  ops:[["10","Menos de 10 minutos"],["15","Uns 15 minutos"],["20","20 a 30 minutos"],["30","Mais de 30 minutos"],["nd","Depende do dia"]]},
+ {id:"como", tipo:"info"},
+ {id:"acontece", tipo:"multi", q:"Sobre treino e rotina, o que acontece com você?",
+  ops:["Começo na segunda e paro na quarta","Não sei qual treino fazer em casa","Acho que 15 minutos não adiantam","Fim de ano: a agenda some","Nenhum desses"]},
+ {id:"sabotou", tipo:"multi", q:"O que mais atrapalhou as suas tentativas até hoje?",
+  ops:["Falta de tempo (rotina corrida)","Cansaço no fim do dia","Treinos longos ou difíceis demais","Não ter um plano com começo e fim","Falta de companhia (desisti sozinha)","Nenhum desses"]},
+ {id:"semana", tipo:"sn", q:"Você já começou a treinar e parou antes de completar uma semana?"},
+ {id:"load1", tipo:"load", txt:"De acordo com as suas respostas, estamos montando o seu diagnóstico..."},
+ {id:"diag", tipo:"diag"},
+ {id:"load2", tipo:"load", txt:"Montando o seu plano até a sua data..."},
+ {id:"oferta", tipo:"oferta"}
+];
+
+let k = 0; const hist = [];
+const app = document.getElementById('app');
+function go(n){ hist.push(k); k=n; render(); window.scrollTo(0,0); }
+document.getElementById('back').onclick=()=>{ if(hist.length){ k=hist.pop(); render(); } };
+
+function letra(i){return "ABCDEF"[i]}
+function dias(){ const d=+S.dias||30; return d; }
+function treinos(){ return Math.min(dias(),21); }
+
+function render(){
+  const t = telas[k];
+  document.getElementById('bar').style.width = Math.round((k)/(telas.length-1)*100)+'%';
+  document.getElementById('back').style.visibility = (k>0 && !/load|oferta/.test(t.tipo)) ? 'visible':'hidden';
+  document.getElementById('top').style.display = t.tipo==='oferta' ? 'none':'flex';
+  let h = '';
+  if(t.tipo==='big'){
+    if(t.topo) h += `<div class="hero"><b>21</b><span>CONTAGEM REGRESSIVA</span><small>15 MIN POR DIA</small></div>`;
+    h += `<div class="center">${t.kick?`<span class="kick">${t.kick}</span>`:''}</div><h2>${t.q}</h2><div class="grid">`;
+    t.ops.forEach(o=>h+=`<button class="opt big" data-v="${o[0]}">${o[2]}<span>${o[1]}</span></button>`);
+    h += `</div>`;
+    if(t.rod) h += `<p class="note">${t.rod}</p><div class="center"><span class="pill">&#10003; TEMPO ESTIMADO: 40 SEGUNDOS</span></div>`;
+  }
+  if(t.tipo==='letra'){
+    h += `<h2>${t.q}</h2><div class="list">`;
+    t.ops.forEach((o,i)=>h+=`<button class="opt" data-v="${o[0]}"><span class="l">${letra(i)}</span>${o[1]}</button>`);
+    h += `</div>`;
+  }
+  if(t.tipo==='multi'){
+    h += `<h2>${t.q}</h2><p class="note" style="margin:-10px 0 14px">Pode marcar mais de uma.</p><div class="list">`;
+    t.ops.forEach((o,i)=>h+=`<button class="opt" data-m="${i}"><span class="l">${letra(i)}</span>${o}</button>`);
+    h += `</div><button class="cta" id="cont">Continuar</button>`;
+  }
+  if(t.tipo==='sn'){
+    h += `<h2>${t.q}</h2><div class="grid"><button class="opt dark" data-v="sim">&#10003; Sim</button><button class="opt" data-v="nao" style="justify-content:center">Não</button></div>`;
+  }
+  if(t.tipo==='info'){
+    const n = treinos();
+    let cal=''; for(let d=1;d<=21;d++) cal+=`<div class="${d<=n?(d==1?'t':(d==21||d==n?'f':'')):'' }">${d}</div>`;
+    h += `<h2>Dá para encaixar <span class="hl">${n} treinos</span> até a sua data.</h2>
+      <div class="card"><b>Como funciona:</b><div class="cal">${cal}</div>
+      <div class="step"><b>1</b><div><b>Dia 1 ao 7:</b> treinos curtos para pegar o ritmo.</div></div>
+      <div class="step"><b>2</b><div><b>Dia 8 ao 14:</b> o hábito fica automático.</div></div>
+      <div class="step"><b>3</b><div><b>Dia 15 ao 21:</b> reta final, até a sua data.</div></div></div>
+      <button class="cta" data-go="1">CONTINUAR TESTE GRATUITO</button>
+      <p class="note">Na próxima etapa você vai descobrir o que está travando a sua rotina de treino.</p>`;
+  }
+  if(t.tipo==='load'){
+    h += `<div class="load"><div>Carregando...</div><b id="pct">0%</b><div class="bar"><i id="lb"></i></div><p class="note" style="margin-top:18px">${t.txt}</p></div>`;
+  }
+  if(t.tipo==='diag'){
+    h += `<div class="warn"><div class="y">&#9888; PROBLEMA ENCONTRADO &#9888;</div><h2>O QUE ESTÁ TRAVANDO A SUA ROTINA</h2></div>
+     <p style="margin:18px 0 6px">Pelas suas respostas, o problema não é falta de força de vontade. É <b>falta de plano com prazo</b>:</p>
+     <ul class="chk x"><li>Treinos sem começo e fim definidos</li><li>Treinos longos demais para a rotina de fim de ano</li><li>Sem saber o que fazer em cada dia</li><li>Sem uma data servindo de motivo para continuar</li></ul>
+     <p>Quando a meta é "um dia", ela sempre fica para segunda. Quando tem uma data no calendário, cada dia conta.</p>
+     <p class="center" style="font:900 17px Montserrat;margin:20px 0 0">MAS CALMA, QUE ISSO TEM SOLUÇÃO</p>
+     <button class="cta pulse" data-go="1">CONTINUAR PARA A SOLUÇÃO</button>`;
+  }
+  if(t.tipo==='oferta'){
+    const nome = NOMES[S.data]||"a sua data"; const n = treinos();
+    const preco = `<div class="price"><span class="tag">COMECE HOJE · ÚLTIMAS VAGAS COM DESCONTO</span><s>De R$ 97 por:</s><b>R$ 29,90</b><small>à vista, acesso imediato</small>
+      <a class="cta pulse" href="${CHECKOUT}">QUERO MEU PLANO ATÉ ${(S.data==='reveillon'?'O RÉVEILLON':'A MINHA DATA')}</a></div>`;
+    h += `<h1 style="font-size:28px;line-height:1.15;text-align:center;margin:8px 0 14px">VEJA COMO VOCÊ VAI CHEGAR N${nome.startsWith('o ')?'O':'A'} ${nome.replace(/^(o|a) /,'').toUpperCase()} COM <span class="hl">${n} TREINOS FEITOS</span></h1>
+     <p class="center">O Desafio Contagem Regressiva é um plano de <b>21 treinos de 15 minutos</b>, em casa e sem equipamento, organizado do dia 1 até a sua data.</p>
+     <div class="card"><b>O seu ponto de partida:</b><div class="cal">${Array.from({length:21},(_,i)=>`<div class="${i==0?'t':(i==20?'f':'')}">${i+1}</div>`).join('')}</div><p class="note" style="margin:0">Faltam ${S.dias==='10'?'menos de 15':S.dias==='30'?'15 a 40':S.dias==='50'?'40 a 60':'mais de 60'} dias. Comece hoje e termine antes da data.</p></div>
+     <div class="sec">VOCÊ VAI RECEBER NO DESAFIO:</div>
+     <ul class="chk"><li><span><b>21 treinos guiados de 15 minutos</b> (aquecimento, circuito e alongamento)</span></li>
+      <li><span><b>Calendário da contagem regressiva</b> para marcar cada treino feito</span></li>
+      <li><span><b>Versão adaptada pelo prazo</b> (menos de 21 dias? mostramos quais treinos priorizar)</span></li>
+      <li><span><b>Opção mais leve e mais puxada</b> de cada exercício</span></li>
+      <li><span><b>Checklist da semana da data</b> para chegar no dia com a rotina em dia</span></li>
+      <li><span><b>Acesso imediato</b> no celular, faça no horário que puder</span></li></ul>
+     ${preco}
+     <div class="sec">COMO FUNCIONA</div>
+     <div class="step"><b>1</b><div>Você paga e recebe o acesso na hora, no seu e-mail.</div></div>
+     <div class="step"><b>2</b><div>Todo dia, abre o treino do dia e aperta o play: 15 minutos, na sala.</div></div>
+     <div class="step"><b>3</b><div>Marca no calendário e vê a contagem chegando na sua data.</div></div>
+     <div class="sec">PERGUNTAS FREQUENTES</div>
+     <div class="faq">
+      <details><summary>Preciso de equipamento?</summary><p>Não. Todos os treinos usam só o peso do corpo e um espaço de 2 metros.</p></details>
+      <details><summary>E se faltarem menos de 21 dias?</summary><p>O plano mostra quais treinos priorizar para caber no seu prazo.</p></details>
+      <details><summary>Nunca treinei. Consigo fazer?</summary><p>Sim. Cada exercício tem uma versão mais leve. Se você tem alguma condição de saúde, converse com seu médico antes de começar.</p></details>
+      <details><summary>Tem garantia?</summary><p>Sim. Você tem 7 dias para pedir o reembolso pela própria plataforma de pagamento, sem perguntas.</p></details>
+     </div>
+     ${preco}
+     <p class="foot">Este programa não substitui orientação médica ou de educação física individual. Resultados variam de pessoa para pessoa.</p>`;
+  }
+  app.innerHTML = `<div class="scr on">${h}</div>`;
+
+  app.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{ S[t.id]=b.dataset.v; b.classList.add('on'); setTimeout(()=>go(k+1),220); });
+  app.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(k+1));
+  app.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{
+    const last = b.dataset.m==String(t.ops.length-1);
+    if(last) app.querySelectorAll('[data-m]').forEach(x=>x!==b&&x.classList.remove('on'));
+    else app.querySelector(`[data-m="${t.ops.length-1}"]`).classList.remove('on');
+    b.classList.toggle('on');
+  });
+  const c=document.getElementById('cont'); if(c) c.onclick=()=>{ S[t.id]=[...app.querySelectorAll('[data-m].on')].map(x=>x.innerText.slice(1).trim()); go(k+1); };
+  if(t.tipo==='load'){ let p=0; const iv=setInterval(()=>{ p=Math.min(100,p+Math.ceil(Math.random()*7)); document.getElementById('pct').textContent=p+'%'; document.getElementById('lb').style.width=p+'%'; if(p>=100){clearInterval(iv); setTimeout(()=>{ k++; render(); },400);} },110); }
+}
+render();
+</script>
+</body>
+</html>
